@@ -9,7 +9,8 @@ class EntryManager():
             "Time" : 0,
             "Drops" : 0,
             "State" : 1,
-            "Ping" : 0
+            "Ping" : 0,
+            "Sessions" : []
         }]
 
     def CreateNewEntry(self, Site, IP, Radius):
@@ -20,7 +21,8 @@ class EntryManager():
             "Time" : 0,
             "Drops" : 0,
             "State" : 1,
-            "Ping" : 0
+            "Ping" : 0,
+            "Sessions" : []
         }
 
         self.Entry_list.append(data)

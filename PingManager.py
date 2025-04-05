@@ -3,6 +3,7 @@ import customtkinter as ctk
 import tkinter as tk
 import threading
 from EntryManager import EntryManager
+from datetime import datetime
 
 class PingManager():
     def ping_host(self, site, callback):
