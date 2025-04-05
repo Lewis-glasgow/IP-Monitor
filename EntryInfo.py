@@ -61,14 +61,17 @@ class EntryInfo(ctk.CTkToplevel):
 
         # Populate "Up" session times
         row_index = 2
-        for start_time in site["Sessions"]["Up"]:
+        for start_time in site["Sessions"]["Up"][::-1]:
             session_label = ctk.CTkLabel(self.Table, text=start_time)
             session_label.grid(row=row_index, column=0, padx=x_padding, pady=y_padding)
             print("Session loaded:", start_time)
             row_index += 1
 
         row_index = 2
-        for start_time in site["Sessions"]["Down"]:
+        if len(site["Sessions"]["Down"]) != len(site["Sessions"]["Up"]):
+            row_index = 3
+
+        for start_time in site["Sessions"]["Down"][::-1]:
             session_label = ctk.CTkLabel(self.Table, text=start_time)
             session_label.grid(row=row_index, column=1, padx=x_padding, pady=y_padding)
             print("Session loaded:", start_time)

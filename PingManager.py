@@ -51,7 +51,7 @@ class PingManager():
             site["Ping"] += 1
             if site["Ping"] > 5 and site["State"] != 0:
                 site["State"] = 0
-                site["Drop"] += 1
+                site["Drops"] += 1
                 site["Sessions"]["Down"].append(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))  # Track "Down" event
                 AlertWindow(site["Site"])
 
