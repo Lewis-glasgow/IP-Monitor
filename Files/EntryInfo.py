@@ -2,7 +2,7 @@ import customtkinter as ctk
 import tkinter as tk
 import pyperclip
 
-from EntryManager import EntryManager
+from Files.EntryManager import EntryManager
 
 class EntryInfo(ctk.CTkToplevel):
     def __init__(self, site):

@@ -1,4 +1,4 @@
-from  MainWindow import MainWindow
+from  Files.MainWindow import MainWindow
 import customtkinter as ctk
 import tkinter as tk
 import pickle

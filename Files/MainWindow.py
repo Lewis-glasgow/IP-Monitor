@@ -1,10 +1,10 @@
 import customtkinter as ctk
 import tkinter as tk
 
-from NewEntryWindow import NewEntWin
-from EntryManager import EntryManager
-from PingManager import PingManager
-from EntryInfo import EntryInfo
+from Files.NewEntryWindow import NewEntWin
+from Files.EntryManager import EntryManager
+from Files.PingManager import PingManager
+from Files.EntryInfo import EntryInfo
 
 class MainWindow(ctk.CTk):
 

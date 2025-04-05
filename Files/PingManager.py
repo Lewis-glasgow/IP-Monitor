@@ -2,7 +2,7 @@ import subprocess
 import customtkinter as ctk
 import tkinter as tk
 import threading
-from EntryManager import EntryManager
+from Files.EntryManager import EntryManager
 from datetime import datetime
 
 class PingManager():
@@ -61,7 +61,7 @@ class AlertWindow(ctk.CTkToplevel):
 
         self.label = ctk.CTkLabel(self, text="SITE OFFLINE:")
         self.sitename = ctk.CTkLabel(self, text=name)
-        self.gif_image = tk.PhotoImage(file="no-internet.gif")
+        self.gif_image = tk.PhotoImage(file="Files/no-internet.gif")
         self.gif = tk.Label(self, image=self.gif_image)
 
         self.label.pack()
