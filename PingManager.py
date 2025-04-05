@@ -16,20 +16,16 @@ class PingManager():
                     timeout=3
                 )
                 
-                print(output.stdout)
                 Errors = ["Request timed out.", "Destination host unreachable.", "General failure"]
 
                 for error in Errors:
                     if error in output.stdout or error in output.stderr:
-                        print(f'Ping To {site["IP"]} Unsuccessful!!!')
                         callback(site, False)  # Pass False to callback
                         return
                 
-                print(f'Ping To {site["IP"]} Successful!')
                 callback(site, True)  # Pass True to callback
 
             except subprocess.TimeoutExpired:
-                print(f'Ping To {site["IP"]} Unsuccessful!!!')
                 callback(site, False)
 
         # Start the ping operation in a separate thread
@@ -54,9 +50,6 @@ class PingManager():
                 site["Drops"] += 1
                 site["Sessions"]["Down"].append(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))  # Track "Down" event
                 AlertWindow(site["Site"])
-
-            print(site["Site"], "Down!!!")
-        print(site["Sessions"])
 
 class AlertWindow(ctk.CTkToplevel):
     def __init__(self, name):

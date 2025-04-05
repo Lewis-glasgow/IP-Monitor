@@ -4,19 +4,7 @@ from datetime import datetime
 class EntryManager():
 
     def __init__(self):
-        self.Entry_list = [{
-            "IP" : "192.168.1.128",
-            "Site" : "Site",
-            "Radius" : "Radius",
-            "Time" : 0,
-            "Drops" : 0,
-            "State" : 1,
-            "Ping" : 0,
-            "Sessions" : {
-                "Up" : [datetime.now().strftime('%Y-%m-%d %H:%M:%S')],
-                "Down" : []
-            }
-        }]
+        self.Entry_list = []
 
     def CreateNewEntry(self, Site, IP, Radius):
         data = {

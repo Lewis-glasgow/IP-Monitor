@@ -14,6 +14,20 @@ class MainWindow(ctk.CTk):
         self.PingManager = PingManager()
         self.CreateMainWindow()
         self.CreateLayout()
+        self.bind("<Button-1>", self.unselect_all)
+
+    def unselect_all(self, event):
+        window_y = self.winfo_rooty() 
+        mouse_y = self.winfo_pointery()
+
+        relative_mouse_y = mouse_y - window_y
+
+        window_height = self.winfo_height()
+
+        if relative_mouse_y > window_height / 3:
+            return
+        
+        self.Listbox.selection_clear(0, tk.END)
 
     def MainLoop(self):
         self.PingManager.PingAll(self.EntryManager.Entry_list)
@@ -37,12 +51,13 @@ class MainWindow(ctk.CTk):
         self.Listbox.insert(tk.END, f"Name: {Site} | IP: {IP} | Radius: {Radius}")
 
     def OpenEntryInfo(self,event):
-        if len(self.Listbox.curselection()) <= 0:
-            return
-        
-        index = self.Listbox.curselection()[0]
-        site = self.EntryManager.Entry_list[index]
-        EntryInfo(site)
+        try:
+            index = self.Listbox.curselection()[0]
+            site = self.EntryManager.Entry_list[index]
+            EntryInfo(site)
+            self.Listbox.selection_clear(0, tk.END)
+        except:
+            pass
 
 
     def CreateLayout(self):
@@ -68,6 +83,7 @@ class MainWindow(ctk.CTk):
         self.title("IP Monitor")
 
     def Update_listbox(self):
+        curserSelection = self.Listbox.curselection()[0] if len(self.Listbox.curselection()) > 0 else ""
         self.Listbox.delete(0, tk.END)
 
         for site in self.EntryManager.Entry_list:
@@ -85,6 +101,12 @@ class MainWindow(ctk.CTk):
 
             self.Listbox.insert(tk.END, f"Name: {site["Site"]} | IP: {site["IP"]} | Status: {State} | Drops: {site["Drops"]} | Time: {site["Time"]} s")
             self.Listbox.itemconfig(tk.END, color)
+
+        if curserSelection == "":
+            return
+        
+        self.Listbox.selection_set(curserSelection)
+        self.Listbox.activate(curserSelection)
 
     def Update_Sites(self):
         for site in self.EntryManager.Entry_list:

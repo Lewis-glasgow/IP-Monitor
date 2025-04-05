@@ -43,8 +43,9 @@ class EntryInfo(ctk.CTkToplevel):
         self.RadiusCopyButton = ctk.CTkButton(self.frame, text="📋", command=self.RadiusCopyPressed)
         self.RadiusCopyButton.grid(column=2, row=2, pady=10, padx=50)
 
-        self.Table = ctk.CTkFrame(self)
+        self.Table = ctk.CTkScrollableFrame(self, width=700, height=300)
         self.Table.place(relx=0.5, rely=0.5, anchor="center")
+        self.Table.pack()
 
         self.LoadSessions(site)
 
@@ -64,7 +65,6 @@ class EntryInfo(ctk.CTkToplevel):
         for start_time in site["Sessions"]["Up"][::-1]:
             session_label = ctk.CTkLabel(self.Table, text=start_time)
             session_label.grid(row=row_index, column=0, padx=x_padding, pady=y_padding)
-            print("Session loaded:", start_time)
             row_index += 1
 
         row_index = 2
@@ -74,7 +74,6 @@ class EntryInfo(ctk.CTkToplevel):
         for start_time in site["Sessions"]["Down"][::-1]:
             session_label = ctk.CTkLabel(self.Table, text=start_time)
             session_label.grid(row=row_index, column=1, padx=x_padding, pady=y_padding)
-            print("Session loaded:", start_time)
             row_index += 1
 
 
