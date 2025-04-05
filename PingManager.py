@@ -46,15 +46,17 @@ class PingManager():
             if site["State"] == 0:
                 site["State"] = 2
                 site["Ping"] = 0
+                site["Sessions"]["Up"].append(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))  # Track "Up" event
         else:
             site["Ping"] += 1
             if site["Ping"] > 5 and site["State"] != 0:
-                AlertWindow(site["Site"])
-                site["Drops"] += 1
                 site["State"] = 0
+                site["Drop"] += 1
+                site["Sessions"]["Down"].append(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))  # Track "Down" event
+                AlertWindow(site["Site"])
 
             print(site["Site"], "Down!!!")
-
+        print(site["Sessions"])
 
 class AlertWindow(ctk.CTkToplevel):
     def __init__(self, name):

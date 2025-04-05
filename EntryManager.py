@@ -1,4 +1,6 @@
 
+from datetime import datetime
+
 class EntryManager():
 
     def __init__(self):
@@ -10,7 +12,10 @@ class EntryManager():
             "Drops" : 0,
             "State" : 1,
             "Ping" : 0,
-            "Sessions" : []
+            "Sessions" : {
+                "Up" : [datetime.now().strftime('%Y-%m-%d %H:%M:%S')],
+                "Down" : []
+            }
         }]
 
     def CreateNewEntry(self, Site, IP, Radius):
@@ -22,7 +27,10 @@ class EntryManager():
             "Drops" : 0,
             "State" : 1,
             "Ping" : 0,
-            "Sessions" : []
+            "Sessions" : {
+                "Up" : [datetime.now().strftime('%Y-%m-%d %H:%M:%S')],
+                "Down" : []
+            }
         }
 
         self.Entry_list.append(data)

@@ -43,6 +43,38 @@ class EntryInfo(ctk.CTkToplevel):
         self.RadiusCopyButton = ctk.CTkButton(self.frame, text="📋", command=self.RadiusCopyPressed)
         self.RadiusCopyButton.grid(column=2, row=2, pady=10, padx=50)
 
+        self.Table = ctk.CTkFrame(self)
+        self.Table.place(relx=0.5, rely=0.5, anchor="center")
+
+        self.LoadSessions(site)
+
+    def LoadSessions(self, site):
+        x_padding = 100
+        y_padding = 1
+
+        # Create header labels
+        start_label = ctk.CTkLabel(self.Table, text="Start")
+        start_label.grid(row=0, column=0, padx=x_padding, pady=y_padding)
+
+        down_label = ctk.CTkLabel(self.Table, text="Down")
+        down_label.grid(row=0, column=1, padx=x_padding, pady=y_padding)
+
+        # Populate "Up" session times
+        row_index = 2
+        for start_time in site["Sessions"]["Up"]:
+            session_label = ctk.CTkLabel(self.Table, text=start_time)
+            session_label.grid(row=row_index, column=0, padx=x_padding, pady=y_padding)
+            print("Session loaded:", start_time)
+            row_index += 1
+
+        row_index = 2
+        for start_time in site["Sessions"]["Down"]:
+            session_label = ctk.CTkLabel(self.Table, text=start_time)
+            session_label.grid(row=row_index, column=1, padx=x_padding, pady=y_padding)
+            print("Session loaded:", start_time)
+            row_index += 1
+
+
     def NameCopyPressed(self):
         pyperclip.copy(self.site["Site"])
 
