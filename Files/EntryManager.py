@@ -1,10 +1,11 @@
 
 from datetime import datetime
+from Files.Serialization import Load
 
 class EntryManager():
 
     def __init__(self):
-        self.Entry_list = []
+        self.Entry_list = Load()
 
     def CreateNewEntry(self, Site, IP, Radius):
         data = {

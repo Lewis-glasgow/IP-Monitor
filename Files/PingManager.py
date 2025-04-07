@@ -16,8 +16,9 @@ class PingManager():
                     timeout=3
                 )
                 
-                Errors = ["Request timed out.", "Destination host unreachable.", "General failure"]
+                Errors = ["Request timed out.", "Destination host unreachable.", "General failure", "Ping request could not find host"]
 
+                print(output.stdout)
                 for error in Errors:
                     if error in output.stdout or error in output.stderr:
                         callback(site, False)  # Pass False to callback
@@ -55,15 +56,17 @@ class AlertWindow(ctk.CTkToplevel):
     def __init__(self, name):
         super().__init__()
 
-        self.geometry("300x300")
+        w = 300
+        h = 100
+        x = self.winfo_screenwidth()/2 - w
+        y = self.winfo_screenheight()/2 - h
+        self.geometry('%dx%d+%d+%d' % (w, h, x, y))
+
         self.attributes("-topmost", True)
         self.title(name+" Down!!!")
 
-        self.label = ctk.CTkLabel(self, text="SITE OFFLINE:")
+        self.label = ctk.CTkLabel(self, text="SITE OFFLINE:", text_color="Red")
         self.sitename = ctk.CTkLabel(self, text=name)
-        self.gif_image = tk.PhotoImage(file="Files/no-internet.gif")
-        self.gif = tk.Label(self, image=self.gif_image)
 
         self.label.pack()
         self.sitename.pack()
-        self.gif.pack()

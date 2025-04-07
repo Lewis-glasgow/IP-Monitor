@@ -5,6 +5,7 @@ from Files.NewEntryWindow import NewEntWin
 from Files.EntryManager import EntryManager
 from Files.PingManager import PingManager
 from Files.EntryInfo import EntryInfo
+from Files.Serialization import Save, Load
 
 class MainWindow(ctk.CTk):
 
@@ -33,7 +34,7 @@ class MainWindow(ctk.CTk):
         self.PingManager.PingAll(self.EntryManager.Entry_list)
         self.Update_Sites()
         self.Update_listbox()
-        
+        Save(self.EntryManager.Entry_list)
         self.after(1000, self.MainLoop)
 
     def NewEntryPressed(self):
