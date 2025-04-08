@@ -1,16 +1,15 @@
-import pickle
+import json
 import os
 
+path = "data.json"
+
 def Load():
-    return []
-    return
-    if os.path.exists('C:/data.pkl'):
-        with open('data.pkl', 'rb') as f:
-             return pickle.load(f)
+    if not os.path.exists(path):
+        return []
         
-    return []
+    with open(path, 'r') as file:
+        return json.load(file)
 
 def Save(data):
-    return
-    with open('C:/data.pkl', 'wb') as f:
-        pickle.dump(data, f)
+    with open(path, 'w') as file:
+        json.dump(data, file)
